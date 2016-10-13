@@ -12,7 +12,7 @@ import java.util.Random;
  */
 class Utils {
 
-    private Random r = new Random(System.currentTimeMillis());
+    private Random random = new Random(System.currentTimeMillis());
 
     /**
      * Return random numer {@code [0,max]}.
@@ -21,7 +21,7 @@ class Utils {
      * @return {@code x in [0,max]}
      */
     public int next(int max) {
-        return r.nextInt(max + 1);
+        return random.nextInt(max + 1);
     }
 
     /**
@@ -38,14 +38,12 @@ class Utils {
     /**
      * Attempt to randomly place the ship on given board
      *
-     * @param s ship to be placed
-     * @param b board
+     * @param ship ship to be placed
+     * @param board board
      */
-    public void placeShip(Ship s, PlayingBoard b) {
+    public void placeShip(Ship ship, PlayingBoard board) {
         int minX = 0, maxX = 0;
         int minY = 0, maxY = 0;
-
-        Utils u = new Utils();
 
         int retryCount = 0;
         boolean placed = false;
@@ -59,33 +57,33 @@ class Utils {
             switch (d) {
                 case NORTH:
                     minX = 0;
-                    maxX = b.getWidth() - s.getWidth();
+                    maxX = board.getWidth() - ship.getWidth();
                     minY = 0;
-                    maxY = b.getHeight() - s.getLength();
+                    maxY = board.getHeight() - ship.getLength();
                     break;
                 case SOUTH:
-                    minX = s.getWidth() - 1;
-                    maxX = b.getWidth() - 1;
-                    minY = s.getLength() - 1;
-                    maxY = b.getHeight() -1;
+                    minX = ship.getWidth() - 1;
+                    maxX = board.getWidth() - 1;
+                    minY = ship.getLength() - 1;
+                    maxY = board.getHeight() -1;
                     break;
                 case EAST:
                     minX = 0;
-                    maxX = b.getWidth() - s.getLength();
-                    minY = s.getWidth() -1;
-                    maxY = b.getHeight() - 1;
+                    maxX = board.getWidth() - ship.getLength();
+                    minY = ship.getWidth() -1;
+                    maxY = board.getHeight() - 1;
                     break;
                 case WEST:
-                    minX = s.getLength() - 1;
-                    maxX = b.getWidth() - 1;
+                    minX = ship.getLength() - 1;
+                    maxX = board.getWidth() - 1;
                     minY = 0;
-                    maxY = b.getHeight() - s.getWidth();
+                    maxY = board.getHeight() - ship.getWidth();
                     break;
             }
 
-            int x = u.next(minX, maxX);
-            int y = u.next(minY, maxY);
-            placed = b.place(s, x, y, d);
+            int x = next(minX, maxX);
+            int y = next(minY, maxY);
+            placed = board.place(ship, x, y, d);
             retryCount++;
             if (retryCount > 100) {
                 throw new ImpossibleToPlace("Couldn't place ship after " + retryCount + " retries. Giving up.");
