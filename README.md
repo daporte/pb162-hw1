@@ -1,19 +1,19 @@
 Homework assignment no. 1, Ships
 ====================================
 
-**Publication date:** TODO. week of the semester
+**Publication date:** 13th October 2016
 
-**Submission deadline:** TODO. week of the semester (TODO)
+**Submission deadline:** 3rd November 2016
 
 General information
 -------------------
 The goal of this assignment is to write an implementation (or at least the important part ;) for well know [game of ships](https://en.wikipedia.org/wiki/Battleship_(game)).
 
-The maximum number of points for this assignment is **70**.
+The maximum number of points for this assignment is **7**.
 
-- **40 points** for passing tests (attached tests do not guarantee a 100% correctness).
-- **20 points** for correct implementation (evaluated by your class teacher).
-- **10 points** for clean and elegant implementation (code conventions, minimal code repetition).
+- **4 points** for passing tests (attached tests do not guarantee a 100% correctness).
+- **2 points** for correct implementation (evaluated by your class teacher).
+- **1 points** for clean and elegant implementation (code conventions, minimal code repetition).
 
 In cases **when provided tests do not pass** with submitted solution you can be granted no more than **40 points** (this means that you can be granted **0 points** as well)!
 
@@ -128,7 +128,7 @@ The other significant method in ```Ship``` interface is
      */
     Ship hit(int latitude, int longitude);
 ```
-The purpose of this method should be clear. However a notable thing are the coordinates which are relative to the dimension of the entire board.
+The purpose of this method should be clear. However a notable things are the coordinates which are relative to the dimension of the entire board.
 Once again the actual javadoc should clarify this.
 
 Step 3: Implement the runnable program
@@ -155,7 +155,7 @@ There is only single which you are required to implement:
 This method will take a String input, parse it for coordinates and hit the playing board. 
 
 Finally the last thing left is to add a main method to our ```GameApp```. In this method we should create and run a game.
-The following code is an obfuscated example of how such main method should look like. Notice the last two line -- we are creating 
+The following code is an obfuscated example of how such main method should look like. Notice the last two lines -- we are creating 
 an instance of the class containing the main method itself. It may seem strange, however it's quite common practice. 
  ```java
      /**
