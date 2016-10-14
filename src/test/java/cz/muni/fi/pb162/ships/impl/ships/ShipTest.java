@@ -70,7 +70,7 @@ public abstract class ShipTest {
 
     @Test
     public void testBoardPlacement() {
-        ship.setBoardPlacement(EXPECTED_LONGITUDE, EXPECTED_LATITUDE, EXPECTED_DIRECTION);
+        ship.setBoardPlacement(EXPECTED_LATITUDE, EXPECTED_LONGITUDE, EXPECTED_DIRECTION);
 
         softly.assertThat(ship.getLongitude())
                 .as("Check the ship is at correct longitude")
