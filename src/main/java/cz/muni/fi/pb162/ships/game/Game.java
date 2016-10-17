@@ -73,8 +73,8 @@ public class Game {
      * Print the visual representation of playing board
      */
     public void printBoard() {
-        for (int y = board.getHeight() - 1; y >= 0; y--) {
-            for (int x = 0; x < board.getWidth(); x++) {
+        for (int y = board.getWidth() - 1; y >= 0; y--) {
+            for (int x = 0; x < board.getHeight(); x++) {
                 if (x == lastHitX && y == lastHitY) {
                     System.out.print("|x");
                 } else {
