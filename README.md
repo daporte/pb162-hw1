@@ -15,7 +15,7 @@ The maximum number of points for this assignment is **7**.
 - **2 points** for correct implementation (evaluated by your class teacher).
 - **1 points** for clean and elegant implementation (code conventions, minimal code repetition).
 
-In cases **when provided tests do not pass** with submitted solution you can be granted no more than **40 points** (this means that you can be granted **0 points** as well)!
+In cases **when provided tests do not pass** with submitted solution you can be granted no more than **4 points** (this means that you can be granted **0 points** as well)!
 
 ### Preconditions
 To succesfuly implement this assignment you need to know the following
