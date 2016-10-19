@@ -76,10 +76,7 @@ Create classes for the following ships:
 **Note:** Notice that cruiser are tougher compared to other ships. After consulting the javadocs, you could probably tell what it means. ```REINFORCED``` parts of the ship need to be hit twice before they are destroyed.
 All different states of ship's armor are described in ```cz.munii.fi.pb162.ships.ArmorState```.
 
-All ```Ship``` implementations are expected to have a constructor with following parameters
-```java
-public Ship(int length, int width)
-```
+ ```Ship``` implementations are expected to have a parameterless constructor.
 The actual name of the constructor may (and will) vary and you are free to add any other constructor.
 
 **Hint:** Think about what will be the actual difference between these classes and what aspects of Java can you utilise in order to achieve optimal implementation.
