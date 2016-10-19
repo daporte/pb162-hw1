@@ -78,7 +78,7 @@ public class Game {
                 if (x == lastHitX && y == lastHitY) {
                     System.out.print("|x");
                 } else {
-                    System.out.print(map[y][x] ? "|*" : "| ");
+                    System.out.print(map[x][y] ? "|*" : "| ");
                 }
                 if (x == board.getWidth() - 1) {
                     System.out.println("|");
