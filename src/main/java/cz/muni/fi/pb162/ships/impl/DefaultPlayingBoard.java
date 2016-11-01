@@ -23,7 +23,7 @@ public class DefaultPlayingBoard implements PlayingBoard {
     public DefaultPlayingBoard(int height, int width){
         this.height = height;
         this.width = width;
-        board = new BoardTile[height][width];
+        board = new BoardTile[width][height];
     }
 
 
@@ -50,22 +50,22 @@ public class DefaultPlayingBoard implements PlayingBoard {
 
 
     private void placeOnBoard(Ship ship, int latitude, int longitude) {
-        System.out.println("new ship");
-        for (int i = 0; i < ship.getLength(); i++) {
-            for (int j = 0; j < ship.getWidth(); j++) {
+
+        for (int i = 0; i < ship.getWidth(); i++) {
+            for (int j = 0; j < ship.getLength(); j++) {
 
                 switch (ship.getDirection()){
                     case NORTH:
                         board[latitude + i][longitude + j] = new BoardTile(ship, i, j);
                         break;
                     case EAST:
-                        board[longitude + i][latitude + j] = new BoardTile(ship, i, j);
+                        board[latitude + j][longitude - i] = new BoardTile(ship, i, j);
                         break;
                     case SOUTH:
                         board[latitude - i][longitude - j] = new BoardTile(ship, i, j);
                         break;
                     case WEST:
-                        board[longitude - i][latitude - j] = new BoardTile(ship, i, j);
+                        board[latitude - j][longitude + i] = new BoardTile(ship, i, j);
                         break;
                 }
             }
@@ -73,8 +73,8 @@ public class DefaultPlayingBoard implements PlayingBoard {
     }
 
     private boolean canBeAdded(Ship ship, int latitude, int longitude){
-        for (int i = 0; i < ship.getLength(); i++) {
-            for (int j = 0; j < ship.getWidth(); j++) {
+        for (int i = 0; i < ship.getWidth(); i++) {
+            for (int j = 0; j < ship.getLength(); j++) {
                 int latitudeToCheck = 0;
                 int longitudeToCheck = 0;
 
@@ -84,16 +84,16 @@ public class DefaultPlayingBoard implements PlayingBoard {
                         longitudeToCheck = longitude + j;
                         break;
                     case EAST:
-                        latitudeToCheck = longitude + i;
-                        longitudeToCheck = latitude + j;
+                        latitudeToCheck = latitude + j;
+                        longitudeToCheck = longitude - i;
                         break;
                     case SOUTH:
                         latitudeToCheck = latitude - i;
                         longitudeToCheck = longitude - j;
                         break;
                     case WEST:
-                        latitudeToCheck = longitude - i;
-                        longitudeToCheck = latitude - j;
+                        latitudeToCheck = latitude - j;
+                        longitudeToCheck = longitude + i;
                         break;
                 }
 
@@ -115,7 +115,7 @@ public class DefaultPlayingBoard implements PlayingBoard {
     }
 
     private boolean isInBounds(int latitude, int longitude){
-        return latitude >= 0 && latitude < height && longitude >= 0 && longitude < width;
+        return latitude >= 0 && latitude < width && longitude >= 0 && longitude < height;
     }
 
     public Ship get(int latitude, int longitude) {

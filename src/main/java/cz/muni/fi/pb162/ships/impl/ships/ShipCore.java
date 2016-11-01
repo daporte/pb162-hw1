@@ -29,7 +29,7 @@ public abstract class ShipCore implements Ship{
     public ShipCore(int length, int width, ArmorState armorState){
         this.length = length;
         this.width = width;
-        shipHull = new ArmorState[length][width];
+        shipHull = new ArmorState[width][length];
         initializeHull(armorState);
     }
 
@@ -75,13 +75,13 @@ public abstract class ShipCore implements Ship{
     }
 
     public ArmorState hit(int x, int y) {
-        ArmorState hitSection = shipHull[x][y];
+
         try {
-            hitSection = ArmorState.values()[hitSection.ordinal() + 1];
+            shipHull[x][y] = ArmorState.values()[shipHull[x][y].ordinal() + 1];
         } catch (Exception e){
 
         }
-        return hitSection;
+        return shipHull[x][y];
     }
 
     public boolean isDestroyed() {

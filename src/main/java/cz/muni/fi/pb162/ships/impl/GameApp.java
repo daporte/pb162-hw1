@@ -29,11 +29,11 @@ public class GameApp extends AbstractGameApp {
     }
 
     public static void main(String[] args){
-        PlayingBoard board = new DefaultPlayingBoard(10, 10);
+        PlayingBoard board = new DefaultPlayingBoard(10, 20);
         Game g = new Game(board);
         g.placeShips(new Frigate(), new Cruiser(), new ScoutingShip());
-        Ship myShip = new Frigate();
-        board.place(myShip, 0, 0, Direction.NORTH);
+        //Ship myShip = new Cruiser();
+        //board.place(myShip, 5, 5, Direction.SOUTH);
         AbstractGameApp app = new GameApp(g);
         app.run();
     }
