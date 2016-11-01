@@ -1,10 +1,12 @@
 package cz.muni.fi.pb162.ships.impl;
 
+import cz.muni.fi.pb162.ships.ArmorState;
 import cz.muni.fi.pb162.ships.Direction;
 import cz.muni.fi.pb162.ships.PlayingBoard;
 import cz.muni.fi.pb162.ships.Ship;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * TODO : create javadoc
@@ -24,10 +26,12 @@ public class DefaultPlayingBoard implements PlayingBoard {
         board = new BoardTile[height][width];
     }
 
-    public boolean place(Ship ship, int latitude, int longitude, Direction direction) {
 
+
+    public boolean place(Ship ship, int latitude, int longitude, Direction direction) {
+        ship.setBoardPlacement(latitude, longitude, direction);
         if(addToBoard(ship, latitude, longitude)){
-            ship.setBoardPlacement(latitude, longitude, direction);
+
             return true;
         }
 
@@ -43,31 +47,26 @@ public class DefaultPlayingBoard implements PlayingBoard {
             return false;
         }
     }
-    /*
-    private void placeOnBoard(Ship ship, int latitude, int longitude, int relLat, int relLon){
-        for(int i=0;i<Math.abs(relLat);i++){
-            for(int j=0;j<Math.abs(relLon);j++){
-                int currentLat = latitude + i * Integer.signum(relLat);
-                int currentLon = longitude + j * Integer.signum(relLon);
 
-                board[currentLat][currentLon] = new BoardTile(ship, i, j);
-            }
-        }
-    }
-    */
 
     private void placeOnBoard(Ship ship, int latitude, int longitude) {
+        System.out.println("new ship");
         for (int i = 0; i < ship.getLength(); i++) {
             for (int j = 0; j < ship.getWidth(); j++) {
+
                 switch (ship.getDirection()){
                     case NORTH:
                         board[latitude + i][longitude + j] = new BoardTile(ship, i, j);
+                        break;
                     case EAST:
                         board[longitude + i][latitude + j] = new BoardTile(ship, i, j);
+                        break;
                     case SOUTH:
                         board[latitude - i][longitude - j] = new BoardTile(ship, i, j);
+                        break;
                     case WEST:
                         board[longitude - i][latitude - j] = new BoardTile(ship, i, j);
+                        break;
                 }
             }
         }
@@ -78,20 +77,27 @@ public class DefaultPlayingBoard implements PlayingBoard {
             for (int j = 0; j < ship.getWidth(); j++) {
                 int latitudeToCheck = 0;
                 int longitudeToCheck = 0;
+
                 switch (ship.getDirection()){
                     case NORTH:
                         latitudeToCheck = latitude + i;
                         longitudeToCheck = longitude + j;
+                        break;
                     case EAST:
                         latitudeToCheck = longitude + i;
                         longitudeToCheck = latitude + j;
+                        break;
                     case SOUTH:
                         latitudeToCheck = latitude - i;
                         longitudeToCheck = longitude - j;
+                        break;
                     case WEST:
                         latitudeToCheck = longitude - i;
                         longitudeToCheck = latitude - j;
+                        break;
                 }
+
+
                 if(isOccupied(latitudeToCheck, longitudeToCheck) || !isInBounds(latitudeToCheck, longitudeToCheck)){
                     return false;
                 }
@@ -113,13 +119,26 @@ public class DefaultPlayingBoard implements PlayingBoard {
     }
 
     public Ship get(int latitude, int longitude) {
+        try{
+            return board[latitude][longitude].getShip();
+        } catch (Exception e){
+            return null;
+        }
 
-        return board[latitude][longitude].getShip();
+
+
     }
 
     public Ship hit(int latitude, int longitude) {
         BoardTile tile = board[latitude][longitude];
+        if(tile == null){
+            return null;
+        }
         Ship ship = tile.getShip();
+        if(ship == null){
+            return null;
+        }
+
         ship.hit(tile.getShipX(), tile.getShipY());
         return ship;
     }

@@ -1,4 +1,4 @@
-package cz.muni.fi.pb162.ships.impl;
+package cz.muni.fi.pb162.ships.impl.ships;
 
 import cz.muni.fi.pb162.ships.ArmorState;
 import cz.muni.fi.pb162.ships.Direction;
@@ -11,7 +11,7 @@ import java.util.Arrays;
  *
  * @author David Portes
  */
-public class ShipCore implements Ship{
+public abstract class ShipCore implements Ship{
 
 
 

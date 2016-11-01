@@ -29,7 +29,7 @@ public class Game {
      */
     public Game(PlayingBoard board) {
         this.board = board;
-        this.placedShips = new ArrayList<>();
+        this.placedShips = new ArrayList<Ship>();
 
         int width = board.getWidth();
         int height = board.getHeight();
@@ -77,7 +77,7 @@ public class Game {
             for (int x = 0; x < board.getWidth(); x++) {
                 if (x == lastHitX && y == lastHitY) {
                     System.out.print("|x");
-                } else {
+                }  else {
                     System.out.print(map[x][y] ? "|*" : "| ");
                 }
                 if (x == board.getWidth() - 1) {

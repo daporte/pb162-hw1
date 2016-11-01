@@ -1,4 +1,4 @@
-package cz.muni.fi.pb162.ships.impl;
+package cz.muni.fi.pb162.ships.impl.ships;
 
 import cz.muni.fi.pb162.ships.ArmorState;
 
